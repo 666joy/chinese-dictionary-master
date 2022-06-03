@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:1-11:12
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:1-11:12
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:1-11:12
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:1-11:12
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:1-11:12
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:1-11:12
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:1-11:12
+	package
+		ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:3:5-49
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:5:5-32
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:4:5-31
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+application
+ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:9:5-20
+uses-sdk
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+		ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+		ADDED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+		INJECTED from I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
