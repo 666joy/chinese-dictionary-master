@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:shape="rectangle" >
+
+    <!-- 高度  此处设置宽度无效-->
+
+    <size android:height="20dp"/>
+
+    <!-- 圆角弧度 15 -->
+    <corners android:radius="20dp"/>
+
+    <solid
+        android:color="#9e9e9e" />
+
+
+
+</shape>

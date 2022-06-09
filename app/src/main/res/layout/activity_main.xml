@@ -99,5 +99,17 @@
             android:layout_marginTop="10dp"
             android:text="@string/main_tv_yiju2"
             android:textSize="14sp"/>
+
     </LinearLayout>
+
+    <Switch
+        android:id="@+id/ac_switch_test"
+        android:checked="false"
+        android:thumb="@drawable/thumb"
+        android:track="@drawable/track"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        />
 </LinearLayout>

@@ -1,4 +1,6 @@
 package com.hui.dict;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -33,4 +35,11 @@ public class BaseActivity extends AppCompatActivity implements Callback.CommonCa
     public void onFinished() {
 //        网络请求完成时，会调用的接口。
     }
+
+    @Override
+    // 开关控件用到
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
 }

@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,8 @@ import com.hui.dict.utils.RecognizeService;
 import java.util.ArrayList;
 import java.util.List;
 
+import viewbasics.SwitchActivity;
+
 public class MainActivity extends AppCompatActivity {
     TextView pyTv,bsTv,cyuTv,twenTv,juziTv;
     EditText ziEt;
@@ -39,6 +43,27 @@ public class MainActivity extends AppCompatActivity {
         initView();
         alertDialog = new AlertDialog.Builder(this);
         initAccessTokenWithAkSk();
+
+
+        //1、加载XML声明的布局
+        setContentView(R.layout.activity_main);
+        Switch sw = findViewById(R.id.ac_switch_test);
+
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String state;
+                if (isChecked){
+                    state = "打开";
+                }else {
+                    state = "关闭";
+                }
+                Toast.makeText(MainActivity.this,
+                        "自动调节屏幕亮度"+state,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private boolean checkTokenStatus() {
@@ -166,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
                 if (!checkTokenStatus()) {
                     return;
                 }
+
+
+
                 intent.setClass(MainActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         FileUtil.getSaveFile(getApplication()).getAbsolutePath());
@@ -175,4 +203,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
+
 }
