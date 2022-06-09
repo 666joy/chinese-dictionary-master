@@ -1,13 +1,22 @@
 package com.hui.dict;
+import static android.hardware.Sensor.TYPE_LIGHT;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -22,6 +31,7 @@ import com.baidu.ocr.ui.camera.CameraActivity;
 import com.google.gson.Gson;
 import com.hui.dict.bean.TuWenBean;
 import com.hui.dict.utils.FileUtil;
+import com.hui.dict.utils.LightSensor;
 import com.hui.dict.utils.PatternUtils;
 import com.hui.dict.utils.RecognizeService;
 
@@ -30,12 +40,24 @@ import java.util.List;
 
 import viewbasics.SwitchActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
     TextView pyTv,bsTv,cyuTv,twenTv,juziTv;
     EditText ziEt;
     private boolean hasGotToken = false;
     private static final int REQUEST_CODE_GENERAL_BASIC = 106;
     private AlertDialog.Builder alertDialog;
+
+    private static final String TAG = "MainActivity";
+
+    // 亮度相关的
+    private SensorManager sensorManager;
+    private Sensor lightSensor;
+    private SensorEventListener lightEventListener;
+    private float maxValue;
+
+    
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,24 +67,32 @@ public class MainActivity extends AppCompatActivity {
         initAccessTokenWithAkSk();
 
 
-        //1、加载XML声明的布局
+        // 开关相关的
         setContentView(R.layout.activity_main);
         Switch sw = findViewById(R.id.ac_switch_test);
 
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 String state;
                 if (isChecked){
-                    state = "打开";
+                    state = "开启";
+                    // 开启监听亮度
+                   open();
                 }else {
                     state = "关闭";
+                    close();
                 }
                 Toast.makeText(MainActivity.this,
                         "自动调节屏幕亮度"+state,
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
 
     }
 
@@ -205,6 +235,61 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // 亮度相关的函数
+    @Override
+    public void onSensorChanged(SensorEvent event) {
 
+        int sensorType = event.sensor.getType();
+
+        float currentValue = event.values[0];
+
+        // Log.d(TAG,  String.valueOf(currentValue));
+
+        // 修改app亮度
+
+        Window window = getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.screenBrightness = 1-200/currentValue;
+
+        if( lp.screenBrightness<0){
+            lp.screenBrightness=0.1f;
+        }
+       // Log.d(TAG,  String.valueOf(lp.screenBrightness));
+        window.setAttributes(lp);
+
+
+       // mTvLight.setText( Float.toString( currentValue ) );
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    // 亮度相关的
+    public void open(){
+        // 亮度相关的
+        //获取传感器管理对象
+        SensorManager mSensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        // 获取传感器的类型,光线传感器
+        Sensor mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        // 注册监听器
+        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    public void close(){
+        //获取传感器管理对象
+        SensorManager mSensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        // 获取传感器的类型,光线传感器
+        Sensor mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        // 取消监听
+        mSensorManager.unregisterListener(this);
+        // 改为系统亮度
+        Window window = this.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+        window.setAttributes(lp);
+
+    }
 
 }
