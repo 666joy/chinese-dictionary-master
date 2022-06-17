@@ -81,13 +81,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     state = "开启";
                     // 开启监听亮度
                    open();
+                   // 开启通知服务,不知参数是否正确
+//                    findViewById(R.id.ac_switch_test);
+                    startService(findViewById(R.id.ac_switch_test));
+//                    startService(getIntent());
                 }else {
                     state = "关闭";
                     close();
+                    stopService(findViewById(R.id.ac_switch_test));
                 }
-                Toast.makeText(MainActivity.this,
-                        "自动调节屏幕亮度"+state,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this,
+//                        "自动调节屏幕亮度"+state,
+//                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -224,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
+
                 intent.setClass(MainActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         FileUtil.getSaveFile(getApplication()).getAbsolutePath());
@@ -290,6 +296,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
         window.setAttributes(lp);
 
+    }
+
+//    service组件相关
+    // Method to start the service  启动服务
+    public void startService(View view) {
+        startService(new Intent(getBaseContext(), MyService.class));
+    }
+
+    // Method to stop the service  停止服务
+    public void stopService(View view) {
+        stopService(new Intent(getBaseContext(), MyService.class));
     }
 
 }

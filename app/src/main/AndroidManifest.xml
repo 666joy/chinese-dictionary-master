@@ -31,6 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+<!--        包含服务-->
+        <service android:name=".MyService" />
     </application>
 
 </manifest>

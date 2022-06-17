@@ -17,7 +17,7 @@ import com.hui.dict.R;
  *
  * @author CoderCao
  */
-public class SwitchActivity extends BaseActivity {
+public class SwitchActivity extends BaseActivity  {
 
     private final String TAG = "SwitchActivity";
 
