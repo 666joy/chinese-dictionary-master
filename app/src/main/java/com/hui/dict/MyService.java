@@ -1,5 +1,7 @@
 package com.hui.dict;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;

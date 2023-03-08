@@ -6,11 +6,11 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+8-->D:\APP\AndroidStudioProjects\chinese-dictionary-masterLD3\refresh_library\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml
+9-->D:\APP\AndroidStudioProjects\chinese-dictionary-masterLD3\refresh_library\src\main\AndroidManifest.xml
 10
 11    <application />
-11-->I:\Android_project\bigwork\zidian\chinese-dictionary-master\refresh_library\src\main\AndroidManifest.xml:9:5-20
+11-->D:\APP\AndroidStudioProjects\chinese-dictionary-masterLD3\refresh_library\src\main\AndroidManifest.xml:9:5-20
 12
 13</manifest>

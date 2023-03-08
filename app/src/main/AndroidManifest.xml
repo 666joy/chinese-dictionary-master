@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:exported="true"
         android:usesCleartextTraffic="true">
         <activity android:name=".CollectionActivity"></activity>
         <activity android:name=".SettingActivity" />
@@ -24,13 +25,22 @@
         <activity android:name=".WordInfoActivity" />
         <activity android:name=".SearchPinyinActivity" />
         <activity android:name=".SearchBuShouActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+<!--        注册-->
+        <receiver android:name=".MyReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.myreceiver.test"/>
+            </intent-filter>
+        </receiver>
 
 <!--        包含服务-->
         <service android:name=".MyService" />

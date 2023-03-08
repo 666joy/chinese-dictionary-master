@@ -3,10 +3,13 @@ import static android.hardware.Sensor.TYPE_LIGHT;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.widget.Button;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -40,7 +44,7 @@ import java.util.List;
 
 import viewbasics.SwitchActivity;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity implements SensorEventListener,View.OnClickListener {
     TextView pyTv,bsTv,cyuTv,twenTv,juziTv;
     EditText ziEt;
     private boolean hasGotToken = false;
@@ -55,7 +59,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorEventListener lightEventListener;
     private float maxValue;
 
-    
+    //广播
+    private Button mButtonSend;
+
+    private MyReceiver mMyReceiver;
+    private AlarmManager mAlarmManager;
     
 
     @Override
@@ -66,6 +74,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         alertDialog = new AlertDialog.Builder(this);
         initAccessTokenWithAkSk();
 
+        //广播，动态注册方式
+        mMyReceiver = new MyReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.myreceiver.test");
+        registerReceiver(mMyReceiver, filter);
+        //得到ALARM_SERVICE服务
+        mAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        mButtonSend = (Button) findViewById(R.id.button_send);
+
+        mButtonSend.setOnClickListener(this);
 
         // 开关相关的
         setContentView(R.layout.activity_main);
@@ -81,10 +100,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     state = "开启";
                     // 开启监听亮度
                    open();
-                   // 开启通知服务,不知参数是否正确
-//                    findViewById(R.id.ac_switch_test);
                     startService(findViewById(R.id.ac_switch_test));
-//                    startService(getIntent());
                 }else {
                     state = "关闭";
                     close();
@@ -197,14 +213,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     public void onClick(View view) {
         Intent intent = new Intent();
+//        Toast.makeText(this, "测试", Toast.LENGTH_LONG).show();
         switch (view.getId()) {
+            case R.id.button_send:
+                sendBroadcast();
+                break;
             case R.id.main_iv_setting:
+                sendBroadcast();
                 intent.setClass(this,SettingActivity.class);
                 startActivity(intent);
                 break;
             case R.id.main_iv_search:
                 String text = ziEt.getText().toString();
                 if (!TextUtils.isEmpty(text)) {
+                    //                测试
+                    Toast.makeText(this, "测试", Toast.LENGTH_LONG).show();
+
                     intent.setClass(this,WordInfoActivity.class);
                     intent.putExtra("zi",text);
                     startActivity(intent);
@@ -308,5 +332,32 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void stopService(View view) {
         stopService(new Intent(getBaseContext(), MyService.class));
     }
+//  广播
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        unregisterReceiver(mMyReceiver);
+//    }
 
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.button_send:
+//                sendBroadcast();
+//                break;
+//            default:
+//                break;
+//        }
+//
+//    }
+
+    /**
+     * 发送一个广播
+     */
+    private void sendBroadcast() {
+        Intent intent = new Intent();
+        intent.setAction("com.myreceiver.test");
+
+        sendBroadcast(intent);
+    }
 }
